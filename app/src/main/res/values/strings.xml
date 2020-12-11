@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Easytherapist</string>
+
+    <string name="app_title">Easytherapy</string>
+
+    <!-- Campos de texto -->
+    <string name="username">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="verifyPassword">Introduzca de nuevo la contraseña</string>
+    <string name="email">Email</string>
+    <string name="phone">Teléfono</string>
+    <string name="name">Nombre y apellidos</string>
+    <string name="birthdate">Fecha de nacimiento (dd/mm/yyyy)</string>
+    <string name="idProfessionalNumber">Número de colegiado</string>
+    <string name="role">Tipo de profesional</string>
+
+    <!-- Roles -->
+    <string name="physioterapist">Fisioterapeuta</string>
+    <string name="ocupational_therapist">Terapeuta Ocupacional</string>
+    <string name="speech_therapist">Logopeda</string>
+
+    <!-- Botones -->
+    <string name="login_button">Iniciar Sesión</string>
+    <string name="signIn_button">Registrarse</string>
+
+</resources>
