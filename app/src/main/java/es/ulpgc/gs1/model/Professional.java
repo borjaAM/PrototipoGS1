@@ -3,7 +3,7 @@ package es.ulpgc.gs1.model;
 import java.util.Date;
 
 public class Professional {
-    private String name, username, password, email, phoneNumber;
+    private String name, username, password, email, phone;
     private final int idProfessional;
     private final Date birthdate;
     private final Role role;
@@ -39,10 +39,6 @@ public class Professional {
         return email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
     public Role getRole() {
         return role;
     }
@@ -55,9 +51,9 @@ public class Professional {
         this.email = email;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    public String getPhone() { return phone; }
+
+    public void setPhone(String phone) { this.phone = phone; }
 
     public enum Role {
         Fisioterapeuta, TerapeutaOcupacional, Logopeda;

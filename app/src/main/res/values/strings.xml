@@ -6,11 +6,13 @@
     <!-- Campos de texto -->
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
-    <string name="verifyPassword">Introduzca de nuevo la contraseña</string>
+    <string name="newPassword">Nueva contraseña</string>
+    <string name="verifyPassword">Confirme la contraseña</string>
     <string name="email">Email</string>
     <string name="phone">Teléfono</string>
     <string name="name">Nombre y apellidos</string>
     <string name="birthdate">Fecha de nacimiento (dd/mm/yyyy)</string>
+    <string name="birthday">Fecha de nacimiento</string>
     <string name="idProfessionalNumber">Número de colegiado</string>
     <string name="role">Tipo de profesional</string>
 
@@ -22,5 +24,11 @@
     <!-- Botones -->
     <string name="login_button">Iniciar Sesión</string>
     <string name="signIn_button">Registrarse</string>
+    <string name="managePatient">Pacientes</string>
+    <string name="listPatient">Lista de pacientes</string>
+    <string name="manageProfile">Perfil</string>
+    <string name="manageCalendar">Calendario</string>
+    <string name="modifyButton">Modificar</string>
+    <string name="saveButton">Guardar</string>
 
 </resources>

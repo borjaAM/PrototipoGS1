@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Easytherapist">
+        <activity android:name=".view.MyProfileActivity"></activity>
         <activity android:name=".view.MainMenuActivity" />
         <activity android:name=".view.signInActivity" />
         <activity android:name=".view.LogInActivity" />
