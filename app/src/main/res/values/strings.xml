@@ -15,6 +15,10 @@
     <string name="birthday">Fecha de nacimiento</string>
     <string name="idProfessionalNumber">Número de colegiado</string>
     <string name="role">Tipo de profesional</string>
+    <string name="address">Calle</string>
+    <string name="city">Ciudad</string>
+    <string name="number">Número</string>
+    <string name="zipCode">Código Postal</string>
 
     <!-- Roles -->
     <string name="physioterapist">Fisioterapeuta</string>
@@ -30,5 +34,9 @@
     <string name="manageCalendar">Calendario</string>
     <string name="modifyButton">Modificar</string>
     <string name="saveButton">Guardar</string>
+    <string name="signOutButton">Cerrar Sesion</string>
+    <string name="cancelButton">Cancelar</string>
+    <string name="createPatientListButton">Nueva lista</string>
+    <string name="createPatientButton">Crear Paciente</string>
 
 </resources>

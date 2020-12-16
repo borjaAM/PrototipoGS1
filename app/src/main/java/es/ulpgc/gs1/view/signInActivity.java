@@ -30,14 +30,19 @@ import java.util.Map;
 
 import es.ulpgc.gs1.R;
 import es.ulpgc.gs1.model.Professional;
+import es.ulpgc.gs1.model.Role;
 
 public class signInActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private EditText name, username, email, birthdate, password, verifyPassword, idProfessional;
-    private RadioButton role;
-    private RadioGroup radioGroup;
+    private EditText nameET, usernameET, emailET, birthdayET, passwordET, verifyPasswordET, idProfessionalET;
+    private String name, username, email, password, verifyPassword;
+    private int idProfessional;
+    private Role role;
+    private Date birthday;
+    private RadioButton rbFisioterapeuta, rbTerapeutaOcupacional, rbLogopeda;
     private FirebaseFirestore db;
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,44 +52,83 @@ public class signInActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        name = findViewById(R.id.fullNameEditText);
-        username = findViewById(R.id.usernameEditText);
-        email = findViewById(R.id.emailEditText);
-        birthdate = findViewById(R.id.birthdateEditText);
-        password = findViewById(R.id.passwordEditText);
-        verifyPassword = findViewById(R.id.verifyPasswordEditText);
-        idProfessional = findViewById(R.id.idProfessionalEditText);
+        nameET = findViewById(R.id.fullNameEditText);
+        usernameET = findViewById(R.id.usernameEditText);
+        emailET = findViewById(R.id.emailEditText);
+        birthdayET = findViewById(R.id.birthdateEditText);
+        passwordET = findViewById(R.id.passwordEditText);
+        verifyPasswordET = findViewById(R.id.verifyPasswordEditText);
+        idProfessionalET = findViewById(R.id.idProfessionalEditText);
 
+        rbFisioterapeuta = (RadioButton) findViewById(R.id.rbFisioterapeuta);
+        rbTerapeutaOcupacional = (RadioButton) findViewById(R.id.rbOcupacional);
+        rbLogopeda = (RadioButton) findViewById(R.id.rbLogopeda);
     }
 
     public void onStart(){
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
+        currentUser = mAuth.getCurrentUser(); // Check if user is signed in (non-null) and update UI accordingly.
     }
 
     public void sign_in_user(View view){
-        if(password.getText().toString().equals(verifyPassword.getText().toString())){
-            mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Toast.makeText(getApplicationContext(), "Usuario creado.", Toast.LENGTH_SHORT).show();
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                add_to_database(createProfessional());
-                                //updateUI(user);
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
-                                //updateUI(null);
-                            }
-                        }
-                    });
+        obtainEditTextValues();
+        obtainRadioButtonValues();
+        obtainDateValue();
+        if(password.length() >= 6){
+            if(password.equals(verifyPassword)){
+                registerUser();
+            } else {
+                Toast.makeText(this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
+            }
         } else {
-            Toast.makeText(this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void registerUser() {
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Toast.makeText(getApplicationContext(), "Usuario creado.", Toast.LENGTH_SHORT).show();
+                        currentUser = mAuth.getCurrentUser();
+                        add_to_database(createProfessional());
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(getApplicationContext(), "Fallo al registrarse.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+    }
+
+    private void obtainEditTextValues(){
+        name = nameET.getText().toString();
+        username = usernameET.getText().toString();
+        password = passwordET.getText().toString();
+        verifyPassword = verifyPasswordET.getText().toString();
+        email = emailET.getText().toString();
+        idProfessional = Integer.parseInt(idProfessionalET.getText().toString());
+    }
+
+    private void obtainDateValue() {
+        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+        try {
+            birthday = format.parse(birthdayET.getText().toString());
+        } catch (ParseException e){
+            Toast.makeText(getApplicationContext(), "Formato de fecha inválido", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void obtainRadioButtonValues(){
+        if (rbFisioterapeuta.isChecked()){
+            role = Role.Fisioterapeuta;
+        } else if (rbTerapeutaOcupacional.isChecked()){
+            role = Role.TerapeutaOcupacional;
+        } else if (rbLogopeda.isChecked()){
+            role = Role.Logopeda;
+        } else {
+            Toast.makeText(this, "No ha indicado su profesión.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -99,39 +143,19 @@ public class signInActivity extends AppCompatActivity {
         users.put("role", professional.getRole());
         users.put("idProfessional", professional.getIdProfessional());
 
-// Add a new document with a generated ID
-        db.collection("users")
-                .add(users)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("Create user", "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Create user", "Error adding document", e);
-                    }
-                });
+        // Add a new document with a generated ID
+        System.out.println("Display name: " + currentUser.getDisplayName());
+        db.collection("users").document(currentUser.getUid()).set(users);
         go_to_mainMenu();
     }
 
     private void go_to_mainMenu(){
         Intent i = new Intent(this, MainMenuActivity.class);
         startActivity(i);
+        finish();
     }
 
     private Professional createProfessional(){
-        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
-        Date birthday = null;
-        try {
-            birthday = format.parse(birthdate.getText().toString());
-        } catch (ParseException e){
-            e.printStackTrace();
-        }
-        return new Professional(name.getText().toString(), username.getText().toString(), password.getText().toString(),
-                email.getText().toString(), /*Professional.Role.valueOf(role.toString().replace(" ", ""))*/ Professional.Role.Fisioterapeuta,
-                Integer.parseInt(idProfessional.getText().toString()), birthday);
+        return new Professional(name, username, password, email, role, idProfessional, birthday);
     }
 }

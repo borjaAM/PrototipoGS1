@@ -18,10 +18,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/patientButton"
+            android:id="@+id/managePatientButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#D65B85"
+            android:onClick="go_to_managePatients"
+            android:text="@string/createPatientButton" />
+
+        <Button
+            android:id="@+id/patientListButton"
             android:layout_width="193dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#D65B85"
+            android:onClick="go_to_patientsLists"
             android:text="@string/listPatient" />
 
         <Button
@@ -29,6 +38,7 @@
             android:layout_width="193dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#D65B85"
+            android:onClick="go_to_my_profile"
             android:text="@string/manageProfile" />
 
         <Button
@@ -39,11 +49,12 @@
             android:text="@string/manageCalendar" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/signOutButton"
             android:layout_width="193dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#D65B85"
-            android:text="Button" />
+            android:onClick="signOut"
+            android:text="@string/signOutButton" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
