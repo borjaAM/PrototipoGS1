@@ -1,4 +1,4 @@
-package es.ulpgc.gs1.view;
+package es.ulpgc.gs1.view.loginAndregister;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import es.ulpgc.gs1.R;
+import es.ulpgc.gs1.view.userView.MainMenuActivity;
 
 public class LogInActivity extends AppCompatActivity {
 

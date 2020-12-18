@@ -1,4 +1,4 @@
-package es.ulpgc.gs1.view;
+package es.ulpgc.gs1.view.userView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,10 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 import es.ulpgc.gs1.R;
+import es.ulpgc.gs1.view.loginAndregister.MainActivity;
+import es.ulpgc.gs1.view.patient.CreatePatientsActivity;
+import es.ulpgc.gs1.view.patient.ModifyPatientsActivity;
+import es.ulpgc.gs1.view.patient.PatientListActivity;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -22,8 +26,13 @@ public class MainMenuActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void go_to_managePatients(View view){
-        Intent i = new Intent(this, ManagePatientsActivity.class);
+    public void go_to_createPatients(View view){
+        Intent i = new Intent(this, CreatePatientsActivity.class);
+        startActivity(i);
+    }
+
+    public void go_to_modifyPatients(View view){
+        Intent i = new Intent(this, ModifyPatientsActivity.class);
         startActivity(i);
     }
 

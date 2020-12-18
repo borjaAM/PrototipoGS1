@@ -1,4 +1,4 @@
-package es.ulpgc.gs1.view;
+package es.ulpgc.gs1.view.patient;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,15 +16,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import es.ulpgc.gs1.R;
 import es.ulpgc.gs1.model.Address;
 import es.ulpgc.gs1.model.Patient;
 
-public class ManagePatientsActivity extends AppCompatActivity {
+public class CreatePatientsActivity extends AppCompatActivity {
 
     private EditText nameET, emailET, phoneET, birthdayET, addressET, numberET, zipcodeET, cityET;
     private FirebaseFirestore db;
@@ -35,7 +31,7 @@ public class ManagePatientsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_patients);
+        setContentView(R.layout.activity_create_patients);
         nameET = findViewById(R.id.nameEditTxt);
         emailET = findViewById(R.id.emailEditTxt);
         phoneET = findViewById(R.id.phoneEditText);

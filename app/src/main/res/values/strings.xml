@@ -34,9 +34,11 @@
     <string name="manageCalendar">Calendario</string>
     <string name="modifyButton">Modificar</string>
     <string name="saveButton">Guardar</string>
+    <string name="deleteButton">Eliminar</string>
     <string name="signOutButton">Cerrar Sesion</string>
     <string name="cancelButton">Cancelar</string>
     <string name="createPatientListButton">Nueva lista</string>
     <string name="createPatientButton">Crear Paciente</string>
+    <string name="modifyPatientButton">Modificar Paciente</string>
 
 </resources>

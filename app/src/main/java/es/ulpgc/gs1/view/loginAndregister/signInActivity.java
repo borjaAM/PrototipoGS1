@@ -1,25 +1,20 @@
-package es.ulpgc.gs1.view;
+package es.ulpgc.gs1.view.loginAndregister;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
@@ -31,6 +26,7 @@ import java.util.Map;
 import es.ulpgc.gs1.R;
 import es.ulpgc.gs1.model.Professional;
 import es.ulpgc.gs1.model.Role;
+import es.ulpgc.gs1.view.userView.MainMenuActivity;
 
 public class signInActivity extends AppCompatActivity {
 

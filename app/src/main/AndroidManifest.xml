@@ -11,13 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Easytherapist">
-        <activity android:name=".view.ManagePatientsActivity"></activity>
-        <activity android:name=".view.PatientListActivity" />
-        <activity android:name=".view.MyProfileActivity" />
-        <activity android:name=".view.MainMenuActivity" />
-        <activity android:name=".view.signInActivity" />
-        <activity android:name=".view.LogInActivity" />
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.patient.ModifyPatientsActivity"></activity>
+        <activity android:name=".view.patient.CreatePatientsActivity" />
+        <activity android:name=".view.patient.PatientListActivity" />
+        <activity android:name=".view.userView.MyProfileActivity" />
+        <activity android:name=".view.userView.MainMenuActivity" />
+        <activity android:name=".view.loginAndregister.signInActivity" />
+        <activity android:name=".view.loginAndregister.LogInActivity" />
+        <activity android:name=".view.loginAndregister.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
