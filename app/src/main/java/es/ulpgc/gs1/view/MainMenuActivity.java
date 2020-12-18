@@ -36,6 +36,10 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent i = new Intent(this, MyProfileActivity.class);
         startActivity(i);
     }
+    public void go_to_calendar(View view){
+        Intent i = new Intent(this, Calendar.class);
+        startActivity(i);
+    }
 
     public void signOut(View view){
         mAuth.signOut();
