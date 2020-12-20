@@ -20,8 +20,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import es.ulpgc.gs1.R;
 import es.ulpgc.gs1.model.Professional;
@@ -56,9 +59,9 @@ public class signInActivity extends AppCompatActivity {
         verifyPasswordET = findViewById(R.id.verifyPasswordEditText);
         idProfessionalET = findViewById(R.id.idProfessionalEditText);
 
-        rbFisioterapeuta = (RadioButton) findViewById(R.id.rbFisioterapeuta);
-        rbTerapeutaOcupacional = (RadioButton) findViewById(R.id.rbOcupacional);
-        rbLogopeda = (RadioButton) findViewById(R.id.rbLogopeda);
+        rbFisioterapeuta = findViewById(R.id.rbFisioterapeuta);
+        rbTerapeutaOcupacional = findViewById(R.id.rbOcupacional);
+        rbLogopeda = findViewById(R.id.rbLogopeda);
     }
 
     public void onStart(){
@@ -108,12 +111,11 @@ public class signInActivity extends AppCompatActivity {
     }
 
     private void obtainDateValue() {
-        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
-        try {
-            birthday = format.parse(birthdayET.getText().toString());
-        } catch (ParseException e){
-            Toast.makeText(getApplicationContext(), "Formato de fecha inválido", Toast.LENGTH_SHORT).show();
-        }
+        String[] fecha = birthdayET.getText().toString().split("/");
+        GregorianCalendar gregorianCalendar = new GregorianCalendar(new Locale("es", "ES"));
+        gregorianCalendar.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1])-1, Integer.parseInt(fecha[0]));
+        gregorianCalendar.setTimeZone(TimeZone.getTimeZone("Europe/Madrid"));
+        birthday = gregorianCalendar.getTime();
     }
 
     private void obtainRadioButtonValues(){

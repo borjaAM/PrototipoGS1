@@ -10,11 +10,17 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import es.ulpgc.gs1.R;
 import es.ulpgc.gs1.model.Address;
@@ -54,10 +60,15 @@ public class CreatePatientsActivity extends AppCompatActivity {
 
     private void createPatient(){
         // excepciones integer parse int cuando esta el campo nulo
+        String[] fecha = birthdayET.getText().toString().split("/");
+        GregorianCalendar gregorianCalendar = new GregorianCalendar(new Locale("es", "ES"));
+        gregorianCalendar.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1])-1, Integer.parseInt(fecha[0]));
+        gregorianCalendar.setTimeZone(TimeZone.getTimeZone("Europe/Madrid"));
+        Date birthdate = gregorianCalendar.getTime();
         Address address = new Address(addressET.getText().toString(), cityET.getText().toString(),
                 Integer.parseInt(numberET.getText().toString()), Integer.parseInt(zipcodeET.getText().toString()));
         patient = new Patient(nameET.getText().toString(), emailET.getText().toString(),
-                phoneET.getText().toString(), null/*(Date) birthdayET.getText()*/, address);
+                phoneET.getText().toString(), birthdate, address);
     }
 
     private void addPatientDatabase() {

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -20,6 +21,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.Map;
 
 import es.ulpgc.gs1.R;
@@ -84,7 +88,13 @@ public class MyProfileActivity extends AppCompatActivity {
         emailET.setText((String) map.get("email"));
         roleET.setText((String) map.get("role"));
         idProfessionalET.setText(String.valueOf(map.get("idProfessional")));
-        //birthdayET.setText());
+        Timestamp instante = (Timestamp) map.get("birthdate");
+        GregorianCalendar gregorianCalendar = new GregorianCalendar(new Locale("es", "ES"));
+        gregorianCalendar.setTime(instante.toDate());
+        String dia = String.valueOf(gregorianCalendar.get(Calendar.DAY_OF_MONTH));
+        String mes = String.valueOf(gregorianCalendar.get(Calendar.MONTH) + 1);
+        String fecha = dia + "/" +  mes + "/" + gregorianCalendar.get(Calendar.YEAR);
+        birthdayET.setText(fecha);
     }
 
     public void modifyUserData(View view){

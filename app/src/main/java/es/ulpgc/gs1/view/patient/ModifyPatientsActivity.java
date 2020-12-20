@@ -13,18 +13,29 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import es.ulpgc.gs1.R;
 import es.ulpgc.gs1.model.Address;
+import es.ulpgc.gs1.model.Patient;
 
 public class ModifyPatientsActivity extends AppCompatActivity {
 
@@ -86,7 +97,13 @@ public class ModifyPatientsActivity extends AppCompatActivity {
         nameET.setText((String) map.get("name"));
         emailET.setText((String) map.get("email"));
         phoneET.setText((String) map.get("telephone"));
-        //birthdayET.setText(map.get("birthdate"));
+        Timestamp instante = (Timestamp) map.get("birthdate");
+        GregorianCalendar gregorianCalendar = new GregorianCalendar(new Locale("es", "ES"));
+        gregorianCalendar.setTime(instante.toDate());
+        String dia = String.valueOf(gregorianCalendar.get(Calendar.DAY_OF_MONTH));
+        String mes = String.valueOf(gregorianCalendar.get(Calendar.MONTH) + 1);
+        String fecha = dia + "/" +  mes + "/" + gregorianCalendar.get(Calendar.YEAR);
+        birthdayET.setText(fecha);
         Map<String, Object> address = (Map) map.get("address");
         addressET.setText((String) address.get("street"));
         numberET.setText(String.valueOf(address.get("number")));
@@ -115,7 +132,7 @@ public class ModifyPatientsActivity extends AppCompatActivity {
         nameET.setFocusableInTouchMode(mode);
         emailET.setFocusableInTouchMode(mode);
         phoneET.setFocusableInTouchMode(mode);
-        //birthdayET.setFocusableInTouchMode(mode);
+        birthdayET.setFocusableInTouchMode(mode);
         addressET.setFocusableInTouchMode(mode);
         numberET.setFocusableInTouchMode(mode);
         zipcodeET.setFocusableInTouchMode(mode);
@@ -138,13 +155,27 @@ public class ModifyPatientsActivity extends AppCompatActivity {
 
     private void modify_patient_in_database() {
         DocumentReference docRef = getCollection(patientId);
-        docRef.update("name", nameET.getText().toString());
-        docRef.update("email", emailET.getText().toString());
-        docRef.update("phone", phoneET.getText().toString());
-        //docRef.update("birthdate", birthdayET.getText().toString()); // new Date().getTime();
+        Patient patient = createNewPatient();
+        docRef.update("name", patient.getName());
+        docRef.update("email", patient.getEmail());
+        docRef.update("telephone", patient.getTelephone());
+        docRef.update("birthdate", patient.getBirthdate());
+        docRef.update("address", patient.getAddress());
+    }
+
+    @NotNull
+    private Patient createNewPatient() {
+        String[] fecha = birthdayET.getText().toString().split("/");
+        GregorianCalendar gregorianCalendar = new GregorianCalendar(new Locale("es", "ES"));
+        gregorianCalendar.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1])-1, Integer.parseInt(fecha[0]));
+        gregorianCalendar.setTimeZone(TimeZone.getTimeZone("Europe/Madrid"));
+        Date birthdate = gregorianCalendar.getTime();
+
         Address direccion = new Address(addressET.getText().toString(), cityET.getText().toString(),
                 Integer.parseInt(numberET.getText().toString()), Integer.parseInt(zipcodeET.getText().toString()));
-        docRef.update("address", direccion);
+
+        return new Patient(nameET.getText().toString(), emailET.getText().toString(),
+                phoneET.getText().toString(), birthdate, direccion);
     }
 
     @NotNull
