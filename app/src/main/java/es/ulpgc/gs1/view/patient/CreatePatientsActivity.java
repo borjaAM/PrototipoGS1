@@ -1,4 +1,4 @@
-package es.ulpgc.gs1.view;
+package es.ulpgc.gs1.view.patient;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -17,14 +18,15 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import es.ulpgc.gs1.R;
 import es.ulpgc.gs1.model.Address;
 import es.ulpgc.gs1.model.Patient;
 
-public class ManagePatientsActivity extends AppCompatActivity {
+public class CreatePatientsActivity extends AppCompatActivity {
 
     private EditText nameET, emailET, phoneET, birthdayET, addressET, numberET, zipcodeET, cityET;
     private FirebaseFirestore db;
@@ -35,7 +37,7 @@ public class ManagePatientsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_patients);
+        setContentView(R.layout.activity_create_patients);
         nameET = findViewById(R.id.nameEditTxt);
         emailET = findViewById(R.id.emailEditTxt);
         phoneET = findViewById(R.id.phoneEditText);
@@ -48,26 +50,30 @@ public class ManagePatientsActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db  = FirebaseFirestore.getInstance();
         currentUser = mAuth.getCurrentUser();
-
     }
 
     public void createPatientButton(View view){
         createPatient();
         addPatientDatabase();
-        readPatient();
+        finish();
     }
 
     private void createPatient(){
         // excepciones integer parse int cuando esta el campo nulo
+        String[] fecha = birthdayET.getText().toString().split("/");
+        GregorianCalendar gregorianCalendar = new GregorianCalendar(new Locale("es", "ES"));
+        gregorianCalendar.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1])-1, Integer.parseInt(fecha[0]));
+        gregorianCalendar.setTimeZone(TimeZone.getTimeZone("Europe/Madrid"));
+        Date birthdate = gregorianCalendar.getTime();
         Address address = new Address(addressET.getText().toString(), cityET.getText().toString(),
                 Integer.parseInt(numberET.getText().toString()), Integer.parseInt(zipcodeET.getText().toString()));
         patient = new Patient(nameET.getText().toString(), emailET.getText().toString(),
-                phoneET.getText().toString(), null/*(Date) birthdayET.getText()*/, address);
+                phoneET.getText().toString(), birthdate, address);
     }
 
     private void addPatientDatabase() {
         // Add a new document with a generated ID
-        db.collection("users/"+currentUser.getUid()+"/patients").document(patient.getName()).set(patient)
+        db.collection("users/"+currentUser.getUid()+"/patients").document().set(patient)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -80,17 +86,5 @@ public class ManagePatientsActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "No se ha podido crear el paciente.", Toast.LENGTH_SHORT).show();
                     }
                 });
-        finish();
-    }
-
-    private void readPatient(){
-        DocumentReference docRef = db.collection("users/"+currentUser.getUid()+"/patients").document(patient.getName());
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Patient patient2 = documentSnapshot.toObject(Patient.class);
-                System.out.println(patient2.toString());
-            }
-        });
     }
 }

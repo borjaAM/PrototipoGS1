@@ -1,4 +1,4 @@
-package es.ulpgc.gs1.view;
+package es.ulpgc.gs1.view.loginAndregister;
 
 import androidx.appcompat.app.AppCompatActivity;
 

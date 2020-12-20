@@ -18,6 +18,10 @@ public class Patient {
         this.address = address;
     }
 
+    public void setBirthdate(Date birthdate) {
+        Birthdate = birthdate;
+    }
+
     public String getName() {
         return name;
     }
@@ -59,7 +63,7 @@ public class Patient {
         return "Patient{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", telephone='" + telephone + '\'' +
+                ", phone='" + telephone + '\'' +
                 ", Birthdate=" + Birthdate +
                 ", address=" + address.toString() +
                 '}';

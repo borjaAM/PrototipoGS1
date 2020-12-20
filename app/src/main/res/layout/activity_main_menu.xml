@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#7DE2EF"
-    tools:context=".view.MainMenuActivity">
+    tools:context=".view.userView.MainMenuActivity">
 
     <LinearLayout
         android:layout_width="390dp"
@@ -17,13 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/managePatientButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#D65B85"
-            android:onClick="go_to_managePatients"
-            android:text="@string/createPatientButton" />
+
 
         <Button
             android:id="@+id/patientListButton"
