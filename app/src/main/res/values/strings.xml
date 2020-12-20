@@ -32,12 +32,15 @@
     <string name="listPatient">Lista de pacientes</string>
     <string name="manageProfile">Perfil</string>
     <string name="manageCalendar">Calendario</string>
+    <string name="seeButton">Ver</string>
     <string name="modifyButton">Modificar</string>
     <string name="saveButton">Guardar</string>
     <string name="deleteButton">Eliminar</string>
     <string name="signOutButton">Cerrar Sesion</string>
     <string name="cancelButton">Cancelar</string>
     <string name="createPatientListButton">Nueva lista</string>
+    <string name="patientListName">Nombre de la lista</string>
+    <string name="patientListLegth">Número de pacientes</string>
     <string name="createPatientButton">Crear Paciente</string>
     <string name="modifyPatientButton">Modificar Paciente</string>
 

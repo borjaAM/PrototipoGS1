@@ -17,21 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/createPatientButton"
-            android:layout_width="193dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#D65B85"
-            android:onClick="go_to_createPatients"
-            android:text="@string/createPatientButton" />
 
-        <Button
-            android:id="@+id/modifyPatientButton"
-            android:layout_width="193dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#D65B85"
-            android:onClick="go_to_modifyPatients"
-            android:text="@string/modifyPatientButton" />
 
         <Button
             android:id="@+id/patientListButton"

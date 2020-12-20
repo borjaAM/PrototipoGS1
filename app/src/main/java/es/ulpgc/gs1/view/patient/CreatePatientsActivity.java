@@ -44,13 +44,12 @@ public class CreatePatientsActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db  = FirebaseFirestore.getInstance();
         currentUser = mAuth.getCurrentUser();
-
     }
 
     public void createPatientButton(View view){
         createPatient();
         addPatientDatabase();
-        readPatient();
+        finish();
     }
 
     private void createPatient(){
@@ -63,7 +62,7 @@ public class CreatePatientsActivity extends AppCompatActivity {
 
     private void addPatientDatabase() {
         // Add a new document with a generated ID
-        db.collection("users/"+currentUser.getUid()+"/patients").document(patient.getName()).set(patient)
+        db.collection("users/"+currentUser.getUid()+"/patients").document().set(patient)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -76,17 +75,5 @@ public class CreatePatientsActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "No se ha podido crear el paciente.", Toast.LENGTH_SHORT).show();
                     }
                 });
-        finish();
-    }
-
-    private void readPatient(){
-        DocumentReference docRef = db.collection("users/"+currentUser.getUid()+"/patients").document(patient.getName());
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Patient patient2 = documentSnapshot.toObject(Patient.class);
-                System.out.println(patient2.toString());
-            }
-        });
     }
 }

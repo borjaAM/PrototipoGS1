@@ -26,15 +26,7 @@ public class MainMenuActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void go_to_createPatients(View view){
-        Intent i = new Intent(this, CreatePatientsActivity.class);
-        startActivity(i);
-    }
 
-    public void go_to_modifyPatients(View view){
-        Intent i = new Intent(this, ModifyPatientsActivity.class);
-        startActivity(i);
-    }
 
     public void go_to_patientsLists(View view){
         Intent i = new Intent(this, PatientListActivity.class);

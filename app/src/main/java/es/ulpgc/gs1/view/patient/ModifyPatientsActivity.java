@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,7 +25,6 @@ import java.util.Map;
 
 import es.ulpgc.gs1.R;
 import es.ulpgc.gs1.model.Address;
-import es.ulpgc.gs1.model.Patient;
 
 public class ModifyPatientsActivity extends AppCompatActivity {
 
@@ -31,7 +33,7 @@ public class ModifyPatientsActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
-    private Patient mockPatient;
+    private String patientId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +58,12 @@ public class ModifyPatientsActivity extends AppCompatActivity {
         db  = FirebaseFirestore.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        Address mockAddress = new Address("emilio arrieta", "barcelona", 30, 24650);
-        mockPatient = new Patient("martina maria perez", "martina@hotmail.com", "123463850", null, mockAddress);
-        readPatient(mockPatient);
+        patientId = getIntent().getStringExtra("name");
+        readPatient();
     }
 
-    private void readPatient(Patient patient) {
-        DocumentReference docRef = getCollection(patient.getName());
+    private void readPatient() {
+        DocumentReference docRef = getCollection(patientId);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -84,7 +85,7 @@ public class ModifyPatientsActivity extends AppCompatActivity {
     private void showPatientData(Map<String, Object> map){
         nameET.setText((String) map.get("name"));
         emailET.setText((String) map.get("email"));
-        phoneET.setText((String) map.get("phone"));
+        phoneET.setText((String) map.get("telephone"));
         //birthdayET.setText(map.get("birthdate"));
         Map<String, Object> address = (Map) map.get("address");
         addressET.setText((String) address.get("street"));
@@ -105,7 +106,7 @@ public class ModifyPatientsActivity extends AppCompatActivity {
     }
 
     public void cancelModifiedPatient(View view){
-        readPatient(mockPatient);
+        readPatient();
         updateUI_editText(false);
         updateUI_buttonVisibility(false);
     }
@@ -122,7 +123,7 @@ public class ModifyPatientsActivity extends AppCompatActivity {
     }
 
     private void updateUI_buttonVisibility(boolean mode) {
-        if(mode == true){
+        if(mode){
             modifyButton.setVisibility(View.INVISIBLE);
             deleteButton.setVisibility(View.INVISIBLE);
             saveButton.setVisibility(View.VISIBLE);
@@ -136,11 +137,11 @@ public class ModifyPatientsActivity extends AppCompatActivity {
     }
 
     private void modify_patient_in_database() {
-        DocumentReference docRef = getCollection(mockPatient.getName());
-        //docRef.update("name", nameET.getText().toString());
+        DocumentReference docRef = getCollection(patientId);
+        docRef.update("name", nameET.getText().toString());
         docRef.update("email", emailET.getText().toString());
         docRef.update("phone", phoneET.getText().toString());
-        //docRef.update("birthdate", birthdayET.getText().toString());
+        //docRef.update("birthdate", birthdayET.getText().toString()); // new Date().getTime();
         Address direccion = new Address(addressET.getText().toString(), cityET.getText().toString(),
                 Integer.parseInt(numberET.getText().toString()), Integer.parseInt(zipcodeET.getText().toString()));
         docRef.update("address", direccion);
@@ -157,6 +158,16 @@ public class ModifyPatientsActivity extends AppCompatActivity {
     }
 
     private void delete_patient_in_database() {
-        getCollection(mockPatient.getName()).delete();
+        getCollection(patientId).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getApplicationContext(), "Paciente eliminado.", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "No se pudo eliminar el paciente", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

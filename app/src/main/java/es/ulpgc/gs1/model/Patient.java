@@ -3,19 +3,23 @@ package es.ulpgc.gs1.model;
 import java.util.Date;
 
 public class Patient {
-    private String name, email, phone;
+    private String name, email, telephone;
     private Date Birthdate;
     private Address address;
 
     public Patient(){
     }
 
-    public Patient(String name, String email, String phone, Date birthdate, Address address) {
+    public Patient(String name, String email, String telephone, Date birthdate, Address address) {
         this.name = name;
         this.email = email;
-        this.phone = phone;
+        this.telephone = telephone;
         Birthdate = birthdate;
         this.address = address;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        Birthdate = birthdate;
     }
 
     public String getName() {
@@ -34,12 +38,12 @@ public class Patient {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public Date getBirthdate() {
@@ -59,7 +63,7 @@ public class Patient {
         return "Patient{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
+                ", phone='" + telephone + '\'' +
                 ", Birthdate=" + Birthdate +
                 ", address=" + address.toString() +
                 '}';
