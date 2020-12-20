@@ -11,8 +11,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import es.ulpgc.gs1.R;
 import es.ulpgc.gs1.view.loginAndregister.MainActivity;
-import es.ulpgc.gs1.view.patient.CreatePatientsActivity;
-import es.ulpgc.gs1.view.patient.ModifyPatientsActivity;
 import es.ulpgc.gs1.view.patient.PatientListActivity;
 
 public class MainMenuActivity extends AppCompatActivity {
@@ -25,8 +23,6 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
         mAuth = FirebaseAuth.getInstance();
     }
-
-
 
     public void go_to_patientsLists(View view){
         Intent i = new Intent(this, PatientListActivity.class);

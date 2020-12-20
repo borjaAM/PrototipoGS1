@@ -38,9 +38,6 @@
     <string name="deleteButton">Eliminar</string>
     <string name="signOutButton">Cerrar Sesion</string>
     <string name="cancelButton">Cancelar</string>
-    <string name="createPatientListButton">Nueva lista</string>
-    <string name="patientListName">Nombre de la lista</string>
-    <string name="patientListLegth">Número de pacientes</string>
     <string name="createPatientButton">Crear Paciente</string>
     <string name="modifyPatientButton">Modificar Paciente</string>
 

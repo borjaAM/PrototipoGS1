@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,7 @@ public class PatientListActivity extends AppCompatActivity{
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private String patientListId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class PatientListActivity extends AppCompatActivity{
         patientsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         patientsRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
+        patientListId = getIntent().getStringExtra("name");
         Query query = db.collection("users/" + currentUser.getUid() + "/patients").orderBy("name");
 
         FirestoreRecyclerOptions<Patient> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Patient>().setQuery(query, Patient.class).build();
@@ -47,7 +50,6 @@ public class PatientListActivity extends AppCompatActivity{
         myPatientAdapter = new MyPatientAdapter(firestoreRecyclerOptions, this);
         myPatientAdapter.notifyDataSetChanged();
         patientsRecyclerView.setAdapter(myPatientAdapter);
-
     }
 
     @Override
