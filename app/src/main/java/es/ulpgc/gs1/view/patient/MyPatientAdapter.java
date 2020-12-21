@@ -53,8 +53,8 @@ public class MyPatientAdapter extends FirestoreRecyclerAdapter<Patient, MyPatien
         holder.treatPatientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(activity, CreateTreatmentPlanActivity.class);
-                i.putExtra("name", id);
+                Intent i = new Intent(activity, TreatmentPlan_List_Activity.class);
+                i.putExtra("patientName", id);
                 activity.startActivity(i);
             }
         });

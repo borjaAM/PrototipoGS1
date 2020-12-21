@@ -223,7 +223,7 @@
                 android:insetRight="10dp"
                 android:onClick="saveModifiedPatient"
                 android:text="@string/saveButton"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/cancelModifyPatientButton"
@@ -234,7 +234,7 @@
                 android:insetLeft="10dp"
                 android:onClick="cancelModifiedPatient"
                 android:text="@string/cancelButton"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
         </LinearLayout>
 

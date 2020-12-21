@@ -6,6 +6,8 @@ public class Injury {
     private String type, consequences, origin, observations;
     private Date date;
 
+    public Injury(){}
+
     public Injury(String type, String consequences, String origin, String observations, Date date) {
         this.type = type;
         this.consequences = consequences;

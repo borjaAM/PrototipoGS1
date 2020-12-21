@@ -18,14 +18,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/modifyTreatmentPlanButton"
-            android:layout_width="193dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#D65B85"
-            android:onClick="go_to_modify_treatmentPlan"
-            android:text="@string/modifyButton" />
-
-        <Button
             android:id="@+id/patientListButton"
             android:layout_width="193dp"
             android:layout_height="wrap_content"

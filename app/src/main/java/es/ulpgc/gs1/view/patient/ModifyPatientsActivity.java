@@ -137,15 +137,15 @@ public class ModifyPatientsActivity extends AppCompatActivity {
 
     private void updateUI_buttonVisibility(boolean mode) {
         if(mode){
-            modifyButton.setVisibility(View.INVISIBLE);
-            deleteButton.setVisibility(View.INVISIBLE);
+            modifyButton.setVisibility(View.GONE);
+            deleteButton.setVisibility(View.GONE);
             saveButton.setVisibility(View.VISIBLE);
             cancelButton.setVisibility(View.VISIBLE);
         } else{
             modifyButton.setVisibility(View.VISIBLE);
             deleteButton.setVisibility(View.VISIBLE);
-            saveButton.setVisibility(View.INVISIBLE);
-            cancelButton.setVisibility(View.INVISIBLE);
+            saveButton.setVisibility(View.GONE);
+            cancelButton.setVisibility(View.GONE);
         }
     }
 

@@ -70,8 +70,8 @@ public class ModifyTreatmentPlanActivity extends AppCompatActivity {
         treatmentObjectivesET = findViewById(R.id.treatmentObjectivesEditTxt);
         treatmentAppliedTechniquesET = findViewById(R.id.appliedTechniquesEditTxt);
 
-        patientId = "bWyq0EDsOOlHGjUTDRJ0"; //getIntent().getStringExtra("patientID");
-        treatmentPlanId = "ryLhOYhcMndWhL4rMJN1"; //getIntent().getStringExtra("treatmentPlanID");
+        patientId = getIntent().getStringExtra("patientID");
+        treatmentPlanId =  getIntent().getStringExtra("treatmentPlanID");
         readTreatmentPlan();
     }
 
@@ -183,7 +183,7 @@ public class ModifyTreatmentPlanActivity extends AppCompatActivity {
 
     public void updateTreatmentPlan(View view){
         modify_treatmentPlan_in_database();
-        updateUI_buttonVisibility(true);
+        updateUI_buttonVisibility(false);
     }
 
     public void cancelModifiedTreatmentPlan(View view){

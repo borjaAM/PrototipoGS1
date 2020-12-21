@@ -34,6 +34,7 @@ public class CreateTreatmentPlanActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private Injury injury;
     private TreatmentPlan treatmentPlan;
+    private String patientID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,8 @@ public class CreateTreatmentPlanActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db  = FirebaseFirestore.getInstance();
         currentUser = mAuth.getCurrentUser();
+        patientID = getIntent().getStringExtra("patientID");
+        System.out.println("createTreatmentPlan::patientID: " + patientID);
     }
 
     public void register_TreatmentPlan_in_database(View view){
@@ -88,7 +91,7 @@ public class CreateTreatmentPlanActivity extends AppCompatActivity {
 
     private void addTreatmentPlanDatabase() {
         // Add a new document with a generated ID
-        db.collection("users/"+currentUser.getUid()+"/patients/" + getIntent().getStringExtra("name") + "/treatmentplans").document().set(treatmentPlan)
+        db.collection("users/"+currentUser.getUid()+"/patients/" + patientID + "/treatmentplans").document().set(treatmentPlan)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

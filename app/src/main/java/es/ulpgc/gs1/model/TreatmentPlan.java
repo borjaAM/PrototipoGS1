@@ -4,6 +4,8 @@ public class TreatmentPlan {
     private Injury injury;
     private String treatment, duration, observations, objectives, appliedTechniques;
 
+    public TreatmentPlan(){}
+
     public TreatmentPlan(Injury injury, String treatment, String duration, String observations, String objectives, String appliedTechniques) {
         this.injury = injury;
         this.treatment = treatment;
