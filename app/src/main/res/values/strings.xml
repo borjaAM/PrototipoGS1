@@ -4,6 +4,7 @@
     <string name="app_title">Easytherapy</string>
 
     <!-- Campos de texto -->
+    <!-- Profesional y paciente -->
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
     <string name="newPassword">Nueva contraseña</string>
@@ -19,11 +20,23 @@
     <string name="city">Ciudad</string>
     <string name="number">Número</string>
     <string name="zipCode">Código Postal</string>
-
     <!-- Roles -->
     <string name="physioterapist">Fisioterapeuta</string>
     <string name="ocupational_therapist">Terapeuta Ocupacional</string>
     <string name="speech_therapist">Logopeda</string>
+    <!-- Lesión -->
+    <string name="lesionType">Tipo de lesión</string>
+    <string name="lesionOrigin">Origen de la lesión</string>
+    <string name="observations">Observaciones</string>
+    <string name="lesionConsequences">Consecuencias</string>
+    <string name="lesionDate">Fecha de la lesión</string>
+    <!-- Plan de tratamiento -->
+    <string name="lesion">Lesión</string>
+    <string name="treatment">Tratamiento</string>
+    <string name="treatmentDuration">Duración</string>
+    <string name="treatmentObjectives">Objetivos</string>
+    <string name="appliedTechniques">Técnicas aplicadas</string>
+
 
     <!-- Botones -->
     <string name="login_button">Iniciar Sesión</string>
@@ -33,6 +46,7 @@
     <string name="manageProfile">Perfil</string>
     <string name="manageCalendar">Calendario</string>
     <string name="seeButton">Ver</string>
+    <string name="treatmentButton">Tratar</string>
     <string name="modifyButton">Modificar</string>
     <string name="saveButton">Guardar</string>
     <string name="deleteButton">Eliminar</string>
@@ -40,5 +54,11 @@
     <string name="cancelButton">Cancelar</string>
     <string name="createPatientButton">Crear Paciente</string>
     <string name="modifyPatientButton">Modificar Paciente</string>
+    <!-- Lesión -->
+    <string name="registerLesionButton">Registrar lesión</string>
+    <!-- Plan de tratamiento -->
+    <string name="treatmentPlan">Plan de tratamiento</string>
+    <string name="createTreatmentPlanButton">Nuevo plan de tratamiento</string>
+    <string name="registerTreatmentPlan">Registrar plan de tratamiento</string>
 
 </resources>

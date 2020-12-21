@@ -10,11 +10,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
@@ -39,8 +36,8 @@ public class CreatePatientsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_patients);
         nameET = findViewById(R.id.nameEditTxt);
-        emailET = findViewById(R.id.emailEditTxt);
-        phoneET = findViewById(R.id.phoneEditText);
+        emailET = findViewById(R.id.treatmentEditTxt);
+        phoneET = findViewById(R.id.durationEditText);
         birthdayET = findViewById(R.id.birthdateEditTxt);
         addressET = findViewById(R.id.addressEditTxt);
         numberET = findViewById(R.id.numberEditTxt);

@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Easytherapist">
+        <activity android:name=".view.patient.ModifyTreatmentPlanActivity"></activity>
+        <activity android:name=".view.patient.CreateTreatmentPlanActivity" />
         <activity android:name=".view.patient.ModifyPatientsActivity" />
         <activity android:name=".view.patient.CreatePatientsActivity" />
         <activity android:name=".view.patient.PatientListActivity" />

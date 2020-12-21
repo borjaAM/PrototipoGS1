@@ -5,20 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#7DE2EF"
-    tools:context=".view.userView.MyProfileActivity">
+    tools:context=".view.patient.ModifyTreatmentPlanActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="389dp"
+        android:layout_height="706dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/lesionTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="@string/lesion"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="575dp"
+            android:layout_height="wrap_content"
             android:gravity="center">
 
             <TableRow
@@ -26,13 +39,53 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/usernameTxtView"
-                    android:layout_width="match_parent"
+                    android:id="@+id/injuryTypeTxtView"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/username" />
+                    android:text="@string/lesionType" />
 
                 <EditText
-                    android:id="@+id/usernameEditTxt"
+                    android:id="@+id/injuryTypeEditTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/injuryConsequencesTxtView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lesionConsequences" />
+
+                <EditText
+                    android:id="@+id/injuryConsequencesEditTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:focusable="false"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/injuryOriginTxtView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lesionOrigin" />
+
+                <EditText
+                    android:id="@+id/injuryOriginEditTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -46,10 +99,68 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/emailTxtView"
+                    android:id="@+id/injuryObservationsTxtView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/email" />
+                    android:text="@string/observations" />
+
+                <EditText
+                    android:id="@+id/injuryObservationsEditTxt"
+                    android:layout_width="263dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="textMultiLine" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/injurynDateTxtView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lesionDate" />
+
+                <EditText
+                    android:id="@+id/injuryDateEditTxt"
+                    android:layout_width="246dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="date" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/treatmentPlanTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/treatmentPlan"
+            android:textAllCaps="true"
+            android:layout_marginTop="25dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/treatmentTxtView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/treatment" />
 
                 <EditText
                     android:id="@+id/treatmentEditTxt"
@@ -58,8 +169,7 @@
                     android:layout_marginStart="10dp"
                     android:ems="10"
                     android:focusable="false"
-                    android:inputType="textEmailAddress" />
-
+                    android:inputType="text" />
             </TableRow>
 
             <TableRow
@@ -67,19 +177,19 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/nameTxtView"
+                    android:id="@+id/treatmentDurationTxtView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/name" />
+                    android:text="@string/treatmentDuration" />
 
                 <EditText
-                    android:id="@+id/nameEditTxt"
+                    android:id="@+id/treatmentDurationEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:ems="10"
                     android:focusable="false"
-                    android:inputType="textPersonName" />
+                    android:inputType="text" />
             </TableRow>
 
             <TableRow
@@ -87,19 +197,19 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/phoneTxtView"
+                    android:id="@+id/treatmentObservationsTxtView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/phone" />
+                    android:text="@string/observations" />
 
                 <EditText
-                    android:id="@+id/durationEditText"
+                    android:id="@+id/treatmentObservationsEditTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:ems="10"
                     android:focusable="false"
-                    android:inputType="phone" />
+                    android:inputType="textMultiLine" />
             </TableRow>
 
             <TableRow
@@ -107,19 +217,19 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/idProfessionalTxtView"
+                    android:id="@+id/treatmentObjectivesTxtView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/idProfessionalNumber" />
+                    android:text="@string/treatmentObjectives" />
 
                 <EditText
-                    android:id="@+id/idProfessionalEditTxt"
+                    android:id="@+id/treatmentObjectivesEditTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:ems="10"
                     android:focusable="false"
-                    android:inputType="number" />
+                    android:inputType="text" />
             </TableRow>
 
             <TableRow
@@ -127,87 +237,46 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/roleTxtView"
+                    android:id="@+id/appliedTechniquesTxtView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/role" />
+                    android:text="@string/appliedTechniques" />
 
                 <EditText
-                    android:id="@+id/roleEditTxt"
+                    android:id="@+id/appliedTechniquesEditTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:ems="10"
                     android:focusable="false"
-                    android:inputType="textPersonName" />
+                    android:inputType="text" />
             </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/birthdateTxtView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/birthday" />
-
-                <EditText
-                    android:id="@+id/birthdateEditTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:ems="10"
-                    android:focusable="false"
-                    android:inputType="textPersonName" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/passwordTxtView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/password" />
-
-                <EditText
-                    android:id="@+id/passwordEditTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:ems="10"
-                    android:focusable="false"
-                    android:inputType="textVisiblePassword" />
-            </TableRow>
-
         </TableLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
 
             <Button
-                android:id="@+id/modifyProfileButton"
-                android:layout_width="40dp"
+                android:id="@+id/modifyTreatmentPlanButton"
+                android:layout_width="43dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#D65B85"
-                android:insetLeft="10dp"
-                android:onClick="modifyUserData"
+                android:insetRight="10dp"
+                android:onClick="modifyTreatmentPlan"
                 android:text="@string/modifyButton" />
 
             <Button
-                android:id="@+id/deleteProfileButton"
-                android:layout_width="40dp"
+                android:id="@+id/deleteTreatmentPlanButton"
+                android:layout_width="43dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#D65B85"
                 android:insetLeft="10dp"
-                android:insetRight="10dp"
-                android:onClick="deleteUserProfile"
+                android:onClick="deleteTreatmentPlan"
                 android:text="@string/deleteButton" />
 
         </LinearLayout>
@@ -218,30 +287,28 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/saveProfileButton"
-                android:layout_width="40dp"
+                android:id="@+id/saveTreatmentPlanButton"
+                android:layout_width="43dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#D65B85"
-                android:insetLeft="10dp"
-                android:onClick="saveModifiedUserData"
+                android:insetRight="10dp"
+                android:onClick="updateTreatmentPlan"
                 android:text="@string/saveButton"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <Button
-                android:id="@+id/cancelProfileButton"
-                android:layout_width="40dp"
+                android:id="@+id/cancelModifyTreatmentPlanButton"
+                android:layout_width="43dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#D65B85"
                 android:insetLeft="10dp"
-                android:insetRight="10dp"
-                android:onClick="cancelDataModification"
+                android:onClick="cancelModifiedTreatmentPlan"
                 android:text="@string/cancelButton"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
         </LinearLayout>
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
