@@ -48,7 +48,7 @@ public class MyProfileActivity extends AppCompatActivity {
         usernameET = findViewById(R.id.usernameEditTxt);
         nameET = findViewById(R.id.nameEditTxt);
         passwordET = findViewById(R.id.passwordEditTxt);
-        emailET = findViewById(R.id.emailEditTxt);
+        emailET = findViewById(R.id.treatmentEditTxt);
         birthdayET = findViewById(R.id.birthdateEditTxt);
         roleET = findViewById(R.id.roleEditTxt);
         idProfessionalET = findViewById(R.id.idProfessionalEditTxt);

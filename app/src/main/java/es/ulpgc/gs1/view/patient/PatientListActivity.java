@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +17,6 @@ import com.google.firebase.firestore.Query;
 
 import es.ulpgc.gs1.R;
 import es.ulpgc.gs1.model.Patient;
-import es.ulpgc.gs1.view.MyPatientAdapter;
 
 public class PatientListActivity extends AppCompatActivity{
 

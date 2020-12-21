@@ -1,4 +1,4 @@
-package es.ulpgc.gs1.view;
+package es.ulpgc.gs1.view.patient;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,7 +17,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 import es.ulpgc.gs1.R;
 import es.ulpgc.gs1.model.Patient;
-import es.ulpgc.gs1.view.patient.ModifyPatientsActivity;
 
 public class MyPatientAdapter extends FirestoreRecyclerAdapter<Patient, MyPatientAdapter.ViewHolder> {
 
@@ -50,6 +49,15 @@ public class MyPatientAdapter extends FirestoreRecyclerAdapter<Patient, MyPatien
                 activity.startActivity(i);
             }
         });
+
+        holder.treatPatientButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(activity, CreateTreatmentPlanActivity.class);
+                i.putExtra("name", id);
+                activity.startActivity(i);
+            }
+        });
     }
 
     // nos crea cada una de las vistas que necesitamos mostrar en la pantalla
@@ -66,6 +74,7 @@ public class MyPatientAdapter extends FirestoreRecyclerAdapter<Patient, MyPatien
         private TextView textViewEmail;
         private TextView textViewPhone;
         private Button viewPatientButton;
+        private Button treatPatientButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,6 +82,7 @@ public class MyPatientAdapter extends FirestoreRecyclerAdapter<Patient, MyPatien
             textViewEmail = itemView.findViewById(R.id.txtViewEmailPatient);
             textViewPhone = itemView.findViewById(R.id.txtViewPhonePatient);
             viewPatientButton = itemView.findViewById(R.id.viewPatientButton);
+            treatPatientButton = itemView.findViewById(R.id.patientTreatmentButton);
         }
 
     }

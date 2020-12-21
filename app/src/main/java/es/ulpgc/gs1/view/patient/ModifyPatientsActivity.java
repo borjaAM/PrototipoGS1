@@ -18,14 +18,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -52,8 +48,8 @@ public class ModifyPatientsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_modify_patients);
 
         nameET = findViewById(R.id.nameEditTxt);
-        emailET = findViewById(R.id.emailEditTxt);
-        phoneET = findViewById(R.id.phoneEditText);
+        emailET = findViewById(R.id.treatmentEditTxt);
+        phoneET = findViewById(R.id.durationEditText);
         birthdayET = findViewById(R.id.birthdateEditTxt);
         addressET = findViewById(R.id.addressEditTxt);
         numberET = findViewById(R.id.numberEditTxt);
