@@ -38,6 +38,7 @@
             android:layout_width="193dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#D65B85"
+            android:onClick="go_to_modify_calendar"
             android:text="@string/manageCalendar" />
 
         <Button

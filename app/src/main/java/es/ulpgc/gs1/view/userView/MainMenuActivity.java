@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 import es.ulpgc.gs1.R;
+import es.ulpgc.gs1.view.Calendar;
 import es.ulpgc.gs1.view.loginAndregister.MainActivity;
 import es.ulpgc.gs1.view.patient.ModifyTreatmentPlanActivity;
 import es.ulpgc.gs1.view.patient.PatientListActivity;
@@ -32,6 +33,10 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public void go_to_my_profile(View view){
         Intent i = new Intent(this, MyProfileActivity.class);
+        startActivity(i);
+    }
+    public void go_to_modify_calendar(View view){
+        Intent i = new Intent(this, Calendar.class);
         startActivity(i);
     }
 

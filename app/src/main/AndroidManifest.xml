@@ -21,6 +21,7 @@
         <activity android:name=".view.userView.MainMenuActivity" />
         <activity android:name=".view.loginAndregister.signInActivity" />
         <activity android:name=".view.loginAndregister.LogInActivity" />
+        <activity android:name=".view.Calendar"/>
         <activity android:name=".view.loginAndregister.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
