@@ -1,5 +1,7 @@
 package es.ulpgc.gs1.model;
 
+
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderItem> {
     @Override
     public Adapter.ViewHolderItem onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_viewer_1, null, false);
+        //view.setBackgroundColor(0xFF488A8A);
         return new ViewHolderItem(view);
     }
 
@@ -40,13 +43,23 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolderItem> {
 
     public class ViewHolderItem extends RecyclerView.ViewHolder{
         TextView dato;
+        TextView dato2;
+        View vista;
         public ViewHolderItem(@NonNull View itemView) {
             super(itemView);
             dato = (TextView) itemView.findViewById(R.id.textView);
+            dato2 = (TextView) itemView.findViewById(R.id.textView2);
+            //vista = (View) itemView.findViewById(R.id.view3);
+            //vista.setBackgroundColor(0xFF488A8A);
+
+            //dato.setBackgroundColor(0xd65b85);
         }
 
         public void assignData(Session session) {
-            dato.setText(session.toString());
+            String a = session.getDate().toString();
+            String b = session.getTreatment().toString();
+            dato.setText(a);
+            dato2.setText(b);
         }
     }
 }

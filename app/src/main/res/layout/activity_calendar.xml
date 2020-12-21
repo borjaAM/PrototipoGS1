@@ -10,7 +10,7 @@
 
     <CalendarView
         android:id="@+id/calendarView4"
-        android:layout_width="404dp"
+        android:layout_width="match_parent"
         android:layout_height="391dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recicler1"
-        android:layout_width="371dp"
+        android:layout_width="match_parent"
         android:layout_height="178dp"
         app:layout_constraintBottom_toTopOf="@+id/imageButton"
         app:layout_constraintEnd_toEndOf="parent"
