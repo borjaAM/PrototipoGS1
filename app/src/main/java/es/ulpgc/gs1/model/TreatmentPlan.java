@@ -12,6 +12,10 @@ public class TreatmentPlan {
         this.objectives = objectives;
         this.appliedTechniques = appliedTechniques;
     }
+    public TreatmentPlan(String a){
+        this.treatment = a;
+
+    }
 
     public Injury getInjury() {
         return injury;
